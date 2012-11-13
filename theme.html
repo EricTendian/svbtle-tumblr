@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{Title}</title>
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+    <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/aB4mdf3y7/style.css" media="screen, print">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.tumblr.com/rb82j8l/H9omdf3dz/kudos.js"></script>
+    {block:Description}
+        <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
+    <meta name="image:Logo" content="" />
+    <meta name="color:Theme Color" content="#1BB5D7" />
+    <meta name="if:RSS Feed" content="1" />
+    <meta name="text:Twitter Username" content="" />
+    <meta name="text:Github Username" content="" />
+    <meta name="text:Contact Email" content="" />
+    <meta name="text:Nickname" content="" />
+    <meta name="text:Google Analytics ID" content="" />
+    <meta name='text:Disqus Shortname' content="" />
+
+    <style type="text/css">
+    aside#logo,aside#logo div a,ul#user_meta a:hover span.link_logo_inside,ul#user_meta a:hover span.link_logo,aside.kudo.complete span.circle {
+        background-color: {color:Theme Color};
+    }
+
+    section.preview header#begin h2,ul#user_meta a:hover,nav.pagination span.next a,nav.pagination span.prev a {
+        color: {color:Theme Color};
+    }
+
+    blockquote,ul#user_meta a:hover,nav.pagination span.next a,nav.pagination span.prev a {
+        border-color: {color:Theme Color};
+    }
+
+    ::-moz-selection,::selection {
+        background: {color:Theme Color};
+        color:#fff;
+        text-shadow:none;
+    }
+
+    aside#logo div a,aside.kudo.complete span.circle{
+        background-image:url({Image:Logo});
+    }
+    </style>
+
+    {block:IndexPage}
+    <title>{text:Title}</title>
+    {/block:IndexPage}
+    {block:PermalinkPage}
+    <title>{block:PostTitle}{PostTitle} - {/block:PostTitle}{Title}</title>
+    {/block:PermalinkPage}
+
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{text:Google Analytics ID}']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+</head>
+
+<body>
+    <header id="sidebar">
+      <aside id="logo" class="clearfix">
+        <div class="clearfix">
+          <a href="/">{Title}</a>
+        </div>
+      </aside>
+      <ul id="user_meta">
+        <li class="blog_name">  
+          <h1 id="blog_name">
+              <a href="/">{text:Nickname}</a>
+          </h1>
+        </li>
+            <li class="blog_owner">  
+          <h2 id="blog_owner">
+            <a href="/">{Title}</a>
+          </h2>
+        </li>
+        <li class="tagline">
+          <h2 id="tagline">
+            {Description}
+          </h2>
+        </li>
+
+        {block:HasPages}
+            {block:Pages}
+                <li class="link">
+                    <a href=”{URL}”>{Label}</a>
+                </li>
+            {/block:Pages}
+        {/block:HasPages}
+        
+        {block:IfTwitterUsername}
+            <li class="link twitter">
+                <a target="_blank" href="http://twitter.com/{text:Twitter Username}">@{text:Twitter Username}</a>
+            </li>
+        {/block:IfTwitterUsername}
+
+        {block:IfGithubUsername}
+            <li class="link github">
+                <a target="_blank" href="http://github.com/{text:Github Username}">github</a>
+            </li>
+        {/block:IfGithubUsername}
+
+        {block:IfContactEmail}
+            <li class="link email">
+                <a href="mailto:{text:Contact Email}">say hello</a>
+            </li>
+        {/block:IfContactEmail}
+        
+        {block:IfRssFeed}
+            <li class="link feed">
+                <a href="{RSS}">feed</a>
+            </li>
+        {/block:IfRssFeed}
+
+      </ul>
+      <aside id="svbtle_linkback">
+        <a href="https://github.com/erict15/svbtle-tumblr">
+          <span class="logo_square"><span class="logo_circle">&nbsp;</span></span>&nbsp;<span class="svbtle">svbtle</span>
+        </a>
+      </aside>
+    </header>
+    
+    <section id="river" role="main">
+    {block:Posts}
+        {block:IndexPage}
+        <header id="begin">
+            <time datetime="" id="top_time"></time>
+            <script type="text/javascript">
+            var date = new Date();
+            $("#top_time").html(date.toLocaleDateString().replace('Monday, ','').replace('Tuesday, ','').replace('Wednesday, ','').replace('Thursday, ','').replace('Friday, ','').replace('Saturday, ','').replace('Sunday, ',''));
+            $("#top_time").attr('datetime', date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
+            </script>
+        </header>
+        {/block:IndexPage}
+        {block:PermalinkPage}
+        <header id="begin">
+            <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" id="top_time">{Month} {DayOfMonth}, {Year}</time>
+        </header>
+        {/block:PermalinkPage}
+
+        {block:Text}
+            <article class="post" id="post{PostID}">
+                {block:Title}
+                    <h2 class="entry-title">{Title}</h2>
+                {/block:Title}
+                <div class="entry-content">
+                    {Body}
+                </div>
+                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
+                    <a href="{ReblogURL}" class="kudobject">
+                        <div class="opening clearfix">
+                            <span class="circle">&nbsp;</span>
+                        </div>
+                    </a>
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">Notes</span>
+                    </a>
+                </aside>
+            </article>
+        {/block:Text}
+        {block:Photo}
+            <article class="post" id="post{PostID}">
+                <div class="entry-content">
+                    <a href="{PhotoURL-HighRes}"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></a>
+                    {block:Caption}
+                        <h2 class="entry-title">{Caption}</h2>
+                    {/block:Caption}
+                </div>
+                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
+                    <a href="{ReblogURL}" class="kudobject">
+                        <div class="opening clearfix">
+                            <span class="circle">&nbsp;</span>
+                        </div>
+                    </a>
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">Notes</span>
+                    </a>
+                </aside>
+            </article>
+        {/block:Photo}
+        {block:Photoset}
+             <article class="post" id="post{PostID}">
+                <div class="entry-content">
+                    {block:Photos}
+                        <img src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" alt="{PhotoAlt}"/>
+                        
+                        {block:Caption}
+                            <h3>{Caption}</h3>
+                        {/block:Caption}
+                    {/block:Photos}
+                    
+                    {block:Caption}
+                        <h2 class="entry-title">{Caption}</h2>
+                    {/block:Caption}
+                </div>
+                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
+                    <a href="{ReblogURL}" class="kudobject">
+                        <div class="opening clearfix">
+                            <span class="circle">&nbsp;</span>
+                        </div>
+                    </a>
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">Notes</span>
+                    </a>
+                </aside>
+            </article>   
+        {/block:Photoset}
+        {block:Quote}
+            <article class="post" id="post{PostID}">
+                <div class="entry-content">
+                    <blockquote>
+                        "{Quote}"
+                    </blockquote>
+                    {block:Source}
+                        <h2 class="entry-title">{Source}</h2>
+                    {/block:Source}
+                </div>
+                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
+                    <a href="{ReblogURL}" class="kudobject">
+                        <div class="opening clearfix">
+                            <span class="circle">&nbsp;</span>
+                        </div>
+                    </a>
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">Notes</span>
+                    </a>
+                </aside>
+            </article>    
+        {/block:Quote}
+        {block:Link}
+            <article class="post" id="post{PostID}">
+                <h2 class="entry-title"><a href="{URL}" class="link" {Target}>{Name}</a></h2>
+                <div class="entry-content">{block:Description}{Description}{/block:Description}</div>
+                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
+                    <a href="{ReblogURL}" class="kudobject">
+                        <div class="opening clearfix">
+                            <span class="circle">&nbsp;</span>
+                        </div>
+                    </a>
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">Notes</span>
+                    </a>
+                </aside>
+            </article>
+        {/block:Link}       
+        {block:Video}
+            <article class="post" id="post{PostID}">
+                <div class="entry-content">
+                    {Video-500}
+                    {block:Caption}
+                        <h2 class="entry-title">{Caption}</h2>
+                    {/block:Caption}
+                </div>
+                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
+                    <a href="{ReblogURL}" class="kudobject">
+                        <div class="opening clearfix">
+                            <span class="circle">&nbsp;</span>
+                        </div>
+                    </a>
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">Notes</span>
+                    </a>
+                </aside>
+            </article>
+        {/block:Video}
+        {block:Audio}
+            <article class="post" id="post{PostID}">
+                <div class="entry-content">
+                    {AudioPlayerBlack}
+                    {block:Caption}
+                        <h2 class="entry-title">{Caption}</h2>
+                    {/block:Caption}
+                </div>
+                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
+                    <a href="{ReblogURL}" class="kudobject">
+                        <div class="opening clearfix">
+                            <span class="circle">&nbsp;</span>
+                        </div>
+                    </a>
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">Notes</span>
+                    </a>
+                </aside>
+            </article>
+        {/block:Audio}
+        <script type="text/javascript">
+        $("#kudo{PostID} span.num").text($("#kudo{PostID} span.num").text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        </script>
+    {/block:Posts}
+
+    {block:IfDisqusShortname}
+    {block:PermalinkPage}
+    <div id="disqus_thread" style="padding:40px"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '{text:Disqus Shortname}'; // required: replace example with your Disqus site shortname
+        var disqus_url = '{Permalink}';
+        var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    {/block:PermalinkPage}
+    {/block:IfDisqusShortname}
+
+    <footer id="paginate">
+        <nav class="pagination">
+            <span class="page gap"></span>
+            {block:PermalinkPage}
+                <span class="prev">
+                    <a href="/" class="back_to_blog" id="backbutton">&larr;&nbsp;&nbsp;&nbsp;Read more</a>
+                </div>
+            {/block:PermalinkPage}
+            {block:PreviousPage}
+                <span class="prev">
+                    <a id="prev" class="prev" href="{PreviousPage}">&larr;&nbsp;&nbsp;&nbsp;Newer</a>
+                </span>
+            {/block:PreviousPage}
+            {block:NextPage}
+                <span class="next">
+                    <a id="next" class="continue" href="{NextPage}">Continue&nbsp;&nbsp;&nbsp;&rarr;</a>
+                </span>
+            {/block:NextPage}
+        </nav>
+    </footer>
+</section>
+
+<iframe id="my-like-frame" style="display:none;"></iframe>
+</body>
+</html>
