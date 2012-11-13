@@ -669,7 +669,7 @@ section#river
 	-webkit-backface-visibility:visible;
 	-moz-backface-visibility:visible;
 	min-height:900px;
-	z-index:99999;
+	z-index:1000;
 }
 
 aside#logo
