@@ -153,7 +153,7 @@
         {block:Text}
             <article class="post" id="post{PostID}">
                 {block:Title}
-                    <h2 class="entry-title">{Title}</h2>
+                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">{Title}</a></h2>
                 {/block:Title}
                 <div class="entry-content">
                     {Body}
@@ -174,9 +174,10 @@
         {block:Photo}
             <article class="post" id="post{PostID}">
                 <div class="entry-content">
+                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Photo</a></h2>
                     <a href="{PhotoURL-HighRes}"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></a>
                     {block:Caption}
-                        <h2 class="entry-title">{Caption}</h2>
+                        <h2>{Caption}</h2>
                     {/block:Caption}
                 </div>
                 <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
@@ -195,6 +196,7 @@
         {block:Photoset}
              <article class="post" id="post{PostID}">
                 <div class="entry-content">
+                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Photoset</a></h2>
                     {block:Photos}
                         <img src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" alt="{PhotoAlt}"/>
                         
@@ -204,7 +206,7 @@
                     {/block:Photos}
                     
                     {block:Caption}
-                        <h2 class="entry-title">{Caption}</h2>
+                        <h2>{Caption}</h2>
                     {/block:Caption}
                 </div>
                 <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
@@ -223,11 +225,12 @@
         {block:Quote}
             <article class="post" id="post{PostID}">
                 <div class="entry-content">
+                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Quote</a></h2>
                     <blockquote>
                         "{Quote}"
                     </blockquote>
                     {block:Source}
-                        <h2 class="entry-title">{Source}</h2>
+                        <h2>{Source}</h2>
                     {/block:Source}
                 </div>
                 <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
@@ -245,7 +248,7 @@
         {/block:Quote}
         {block:Link}
             <article class="post" id="post{PostID}">
-                <h2 class="entry-title"><a href="{URL}" class="link" {Target}>{Name}</a></h2>
+                <h2 class="entry-title"><a href="{URL}" class="no-link title" {Target}>{Name}</a></h2>
                 <div class="entry-content">{block:Description}{Description}{/block:Description}</div>
                 <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
                     <a href="{ReblogURL}" class="kudobject">
@@ -263,9 +266,10 @@
         {block:Video}
             <article class="post" id="post{PostID}">
                 <div class="entry-content">
+                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Video</a></h2>
                     {Video-500}
                     {block:Caption}
-                        <h2 class="entry-title">{Caption}</h2>
+                        <h2>{Caption}</h2>
                     {/block:Caption}
                 </div>
                 <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
@@ -284,6 +288,7 @@
         {block:Audio}
             <article class="post" id="post{PostID}">
                 <div class="entry-content">
+                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Audio</a></h2>
                     {AudioPlayerBlack}
                     {block:Caption}
                         <h2 class="entry-title">{Caption}</h2>
