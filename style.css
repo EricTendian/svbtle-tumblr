@@ -1118,6 +1118,7 @@ nav.pagination
 {
 	border-top:1px solid #e2e2e2;
 	padding:40px 40px 100px;
+	clear:both;
 }
 
 nav.pagination span.next a,nav.pagination span.prev a
@@ -1967,6 +1968,37 @@ ul#user_meta a:hover,nav.pagination span.next a:hover,nav.pagination span.prev a
 ol li ol { padding-left: 40px; }
 
 body.page article.post{border-top: 0;}
+
+/* tags css */
+ul.tags
+{
+	list-style-type: none;
+	margin-bottom: 40px;
+	clear: both;
+}
+ul.tags li
+{
+	float: left;
+	font-family: freight-sans-pro,sans-serif;
+	padding: 0 10px;
+	margin-right: 15px;
+	line-height: 24px;
+	background-color: #1BB5D7;
+}
+ul.tags li a{border-bottom: none; color: #fff;}
+
+/* notes css */
+ol.notes
+{
+	padding-left: 18px;
+	list-style: none;
+	border-left: 10px solid #1BB5D7;
+	margin-left: 40px;
+}
+li.note span.action a
+{
+	font-weight: 700;
+}
 
 /* http://pea.rs/content/data-table */
 table{margin:0; padding:0}

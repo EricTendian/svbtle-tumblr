@@ -5,14 +5,14 @@
     <link rel="shortcut icon" href="{Favicon}">
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
     <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/Mv7mdgb5c/fonts.css" media="screen, print">
-    <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/Ed4mdgb5w/style.css" media="screen, print">
+    <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/P9ymdyp2m/style.css" media="screen, print">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://static.tumblr.com/rb82j8l/H9omdf3dz/kudos.js"></script>
     {block:Description}
         <meta name="description" content="{MetaDescription}" />
     {/block:Description}
     <meta name="image:Logo" content="" />
-    <meta name="color:Theme Color" content="#1BB5D7" />
+    <meta name="color:Theme Color" content="" />
     <meta name="if:RSS Feed" content="1" />
     <meta name="text:Twitter Username" content="" />
     <meta name="text:Github Username" content="" />
@@ -22,7 +22,7 @@
     <meta name='text:Disqus Shortname' content="" />
 
     <style type="text/css">
-    aside#logo,aside#logo div a,ul#user_meta a:hover span.link_logo_inside,ul#user_meta a:hover span.link_logo,aside.kudo.complete span.circle {
+    aside#logo,aside#logo div a,ul#user_meta a:hover span.link_logo_inside,ul#user_meta a:hover span.link_logo,aside.kudo.complete span.circle,ul.tags li {
         background-color: {color:Theme Color};
     }
 
@@ -30,7 +30,7 @@
         color: {color:Theme Color};
     }
 
-    blockquote,ul#user_meta a:hover,nav.pagination span.next a,nav.pagination span.prev a {
+    blockquote,ul#user_meta a:hover,nav.pagination span.next a,nav.pagination span.prev a,ol.notes {
         border-color: {color:Theme Color};
     }
 
@@ -175,7 +175,7 @@
             <article class="post" id="post{PostID}">
                 <div class="entry-content">
                     <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Photo</a></h2>
-                    <a href="{PhotoURL-HighRes}"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></a>
+                    <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></a>
                     {block:Caption}
                         <h2>{Caption}</h2>
                     {/block:Caption}
@@ -307,10 +307,24 @@
                 </aside>
             </article>
         {/block:Audio}
+        {block:HasTags}
+            <ul class="tags">
+                {block:Tags}
+                    <li>
+                        <a href="{TagURL}">{Tag}</a>
+                    </li>
+                {/block:Tags}
+            </ul>
+        {/block:HasTags}
         <script type="text/javascript">
         $("#kudo{PostID} span.num").text($("#kudo{PostID} span.num").text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
         </script>
     {/block:Posts}
+
+    {block:PostNotes}
+    {PostNotes}
+    {/block:PostNotes}
+
 
     {block:IfDisqusShortname}
     {block:PermalinkPage}
