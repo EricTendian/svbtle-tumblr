@@ -1999,6 +1999,10 @@ li.note span.action a
 {
 	font-weight: 700;
 }
+li.note blockquote
+{
+	border-left: none;
+}
 
 /* http://pea.rs/content/data-table */
 table{margin:0; padding:0}

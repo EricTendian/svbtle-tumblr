@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="{Favicon}">
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
     <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/Mv7mdgb5c/fonts.css" media="screen, print">
-    <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/P9ymdyp2m/style.css" media="screen, print">
+    <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/zMqmefa0s/style.css" media="screen, print">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://static.tumblr.com/rb82j8l/H9omdf3dz/kudos.js"></script>
     {block:Description}
@@ -133,17 +133,17 @@
     </header>
     
     <section id="river" role="main">
+    {block:IndexPage}
+    <header id="begin">
+        <time datetime="" id="top_time"></time>
+        <script type="text/javascript">
+        var date = new Date();
+        $("#top_time").html(date.toLocaleDateString().replace('Monday, ','').replace('Tuesday, ','').replace('Wednesday, ','').replace('Thursday, ','').replace('Friday, ','').replace('Saturday, ','').replace('Sunday, ',''));
+        $("#top_time").attr('datetime', date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
+        </script>
+    </header>
+    {/block:IndexPage}
     {block:Posts}
-        {block:IndexPage}
-        <header id="begin">
-            <time datetime="" id="top_time"></time>
-            <script type="text/javascript">
-            var date = new Date();
-            $("#top_time").html(date.toLocaleDateString().replace('Monday, ','').replace('Tuesday, ','').replace('Wednesday, ','').replace('Thursday, ','').replace('Friday, ','').replace('Saturday, ','').replace('Sunday, ',''));
-            $("#top_time").attr('datetime', date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
-            </script>
-        </header>
-        {/block:IndexPage}
         {block:PermalinkPage}
         <header id="begin">
             <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" id="top_time">{Month} {DayOfMonth}, {Year}</time>
@@ -321,11 +321,6 @@
         </script>
     {/block:Posts}
 
-    {block:PostNotes}
-    {PostNotes}
-    {/block:PostNotes}
-
-
     {block:IfDisqusShortname}
     {block:PermalinkPage}
     <div id="disqus_thread" style="padding:40px"></div>
@@ -346,6 +341,10 @@
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     {/block:PermalinkPage}
     {/block:IfDisqusShortname}
+
+    {block:PostNotes}
+    {PostNotes}
+    {/block:PostNotes}
 
     <footer id="paginate">
         <nav class="pagination">
