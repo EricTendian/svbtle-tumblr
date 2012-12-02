@@ -2013,3 +2013,9 @@ table td{color:#666}
 table tr:last-child th, 
 table tr:last-child td{border-bottom:none}
 table tr:nth-child(even){background:#eee}
+
+/* github gist support */
+div.gist {
+	font-size: 0.8em;
+	max-width: 500px;
+}
