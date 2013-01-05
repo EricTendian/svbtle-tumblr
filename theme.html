@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>{Title}</title>
     <link rel="shortcut icon" href="{Favicon}">
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
     <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/Mv7mdgb5c/fonts.css" media="screen, print">
@@ -14,6 +13,8 @@
     <meta name="image:Logo" content="" />
     <meta name="color:Theme Color" content="" />
     <meta name="if:RSS Feed" content="1" />
+    <meta name="if:Archive Link" content="1" />
+    <meta name="text:Swift Search Key" content="" />
     <meta name="text:Twitter Username" content="" />
     <meta name="text:Github Username" content="" />
     <meta name="text:Contact Email" content="" />
@@ -92,6 +93,32 @@
           </h2>
         </li>
 
+        {block:IfSwiftSearchKey}
+            <form>
+              <li class="link">
+            <input type="text" id="st-search-input" class="st-search-input" />
+            </li>
+            </form>
+        <div id="st-results-container"></div>
+        <script type="text/javascript">
+          var Swiftype = window.Swiftype || {};
+          (function() {
+            Swiftype.key = '{text:Swift Search Key}';
+            Swiftype.inputElement = '#st-search-input';
+            Swiftype.resultContainingElement = '#st-results-container';
+            Swiftype.attachElement = '#st-search-input';
+            Swiftype.renderStyle = "overlay";
+
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = "//swiftype.com/embed.js";
+            var entry = document.getElementsByTagName('script')[0];
+            entry.parentNode.insertBefore(script, entry);
+          }());
+        </script>
+        {/block:IfSwiftSearchKey}
+
         {block:HasPages}
             {block:Pages}
                 <li class="link">
@@ -123,6 +150,12 @@
                 <a href="{RSS}">feed</a>
             </li>
         {/block:IfRssFeed}
+
+        {block:IfArchiveLink}
+            <li class="link">
+                <a href="/archive">archive</a>
+            </li>
+        {block:IfArchiveLink}
 
       </ul>
       <aside id="svbtle_linkback">
