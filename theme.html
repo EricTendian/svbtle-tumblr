@@ -13,6 +13,7 @@
     <meta name="image:Logo" content="" />
     <meta name="color:Theme Color" content="" />
     <meta name="if:RSS Feed" content="1" />
+    <meta name="if:Archive Link" content="1" />
     <meta name="text:Twitter Username" content="" />
     <meta name="text:Github Username" content="" />
     <meta name="text:Contact Email" content="" />
@@ -122,6 +123,12 @@
                 <a href="{RSS}">feed</a>
             </li>
         {/block:IfRssFeed}
+
+        {block:IfArchiveLink}
+            <li class="link">
+                <a href="/archive">archive</a>
+            </li>
+        {block:IfArchiveLink}
 
       </ul>
       <aside id="svbtle_linkback">
