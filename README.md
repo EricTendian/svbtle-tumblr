@@ -9,7 +9,7 @@ A Tumblr theme inspired by [Dustin Curtis](http://dcurt.is/)'s [Svbtle](https://
 * Archive link
 * Custom logo
 * Disqus integration
-* Swifttype search integration
+* Swiftype search integration
 * Links to Github, Twitter, and your email
 * Google Analytics support
 

@@ -14,7 +14,7 @@
     <meta name="color:Theme Color" content="" />
     <meta name="if:RSS Feed" content="1" />
     <meta name="if:Archive Link" content="1" />
-    <meta name="text:Swift Search Key" content="" />
+    <meta name="text:Swiftype Search Key" content="" />
     <meta name="text:Twitter Username" content="" />
     <meta name="text:Github Username" content="" />
     <meta name="text:Contact Email" content="" />
@@ -93,7 +93,7 @@
           </h2>
         </li>
 
-        {block:IfSwiftSearchKey}
+        {block:IfSwiftypeSearchKey}
         <li class="link">
             <form>
             <input type="text" id="st-search-input" class="st-search-input" />
@@ -103,7 +103,7 @@
         <script type="text/javascript">
           var Swiftype = window.Swiftype || {};
           (function() {
-            Swiftype.key = '{text:Swift Search Key}';
+            Swiftype.key = '{text:Swiftype Search Key}';
             Swiftype.inputElement = '#st-search-input';
             Swiftype.resultContainingElement = '#st-results-container';
             Swiftype.attachElement = '#st-search-input';
@@ -137,7 +137,7 @@
             font-size: 13px;
         }
         </style>
-        {/block:IfSwiftSearchKey}
+        {/block:IfSwiftypeSearchKey}
 
         {block:HasPages}
             {block:Pages}
