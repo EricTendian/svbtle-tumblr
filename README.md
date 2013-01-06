@@ -6,8 +6,10 @@ A Tumblr theme inspired by [Dustin Curtis](http://dcurt.is/)'s [Svbtle](https://
 ###Features
 * Customizable colors
 * RSS Feed link
+* Archive link
 * Custom logo
 * Disqus integration
+* Swifttype search integration
 * Links to Github, Twitter, and your email
 * Google Analytics support
 
