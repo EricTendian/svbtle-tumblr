@@ -1,426 +1,449 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <link rel="shortcut icon" href="{Favicon}">
-    <link rel="alternate" type="application/rss+xml" href="{RSS}">
-    <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/Mv7mdgb5c/fonts.css" media="screen, print">
-    <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/ARhmefgsh/style.css" media="screen, print">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://static.tumblr.com/rb82j8l/H9omdf3dz/kudos.js"></script>
-    {block:Description}
-        <meta name="description" content="{MetaDescription}" />
-    {/block:Description}
-    <meta name="image:Logo" content="" />
-    <meta name="color:Theme Color" content="" />
-    <meta name="if:RSS Feed" content="1" />
-    <meta name="if:Archive Link" content="1" />
-    <meta name="text:Swiftype Search Key" content="" />
-    <meta name="text:Twitter Username" content="" />
-    <meta name="text:Github Username" content="" />
-    <meta name="text:Contact Email" content="" />
-    <meta name="text:Nickname" content="" />
-    <meta name="text:Google Analytics ID" content="" />
-    <meta name='text:Disqus Shortname' content="" />
+  <meta charset="utf-8">
+  <meta content="authenticity_token" name="csrf-param" />
+  <meta content="" name="csrf-token" />
+  <meta name="image:Logo" content="" />
+  <meta name="color:Theme Color" content="" />
+  <meta name="if:RSS Feed" content="1" />
+  <meta name="if:Archive Link" content="1" />
+  <meta name="text:Swiftype Search Key" content="" />
+  <meta name="text:Twitter Username" content="" />
+  <meta name="text:App dot net Username" content="" />
+  <meta name="text:Nickname" content="" />
+  <meta name="text:Google Analytics ID" content="" />
+  <meta name='text:Disqus Shortname' content="" />
+  {block:IndexPage}
+  <title>{Title}</title>
+  {/block:IndexPage}
+  {block:PermalinkPage}
+  <title>{block:PostTitle}{PostTitle} - {/block:PostTitle}{Title}</title>
+  {/block:PermalinkPage}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {block:Description}
+  <meta name="description" content="{MetaDescription}" />
+  {/block:Description}
+  <meta property="og:title" content="{block:PostTitle}{PostTitle} • {/block:PostTitle}{Title}" />
+  <meta property="og:type" content="blog">
+  <meta property="og:site_name" property="{block:PostTitle}{PostTitle} • {/block:PostTitle}{Title}">
+  {block:Description}
+  <meta property="og:description" content="{MetaDescription}"/>
+  {/block:Description}
+  
+  <link rel="shortcut icon" href="{Favicon}">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  <link href="http://et15.x10.mx/style-dcurtis.css" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/Mv7mdgb5c/fonts.css" media="screen, print">
+  <style type="text/css">
+  /* chat css */
+  ul.chat
+  {
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+  }
+  ul.chat li
+  {
+    margin-bottom: 2%;
+    padding: 2%;
+    width: 50%;
+  }
+  ul.chat .odd {
+    background: rgb(236, 236, 236);
+  }
+  ul.chat .even {
+    background: rgb(166, 230, 255);
+  }
 
+  /* tags css */
+  ul.tags
+  {
+    list-style: none !important;
+    margin: 20px 0 0 0;
+    clear: both;
+  }
+  ul.tags li
+  {
+    float: left;
+    margin-right: 15px !important;
+    line-height: 24px !important;
+  }
+  ul.tags li a
+  {
+    display: inline-block;
+    font-family: 'proxima-nova','Helvetica','Avenir',sans-serif;
+    padding: 0 10px;
+    border: 4px solid #f8f8f8;
+    background-color: #fff;
+    color: #111;
+  }
+  ul.tags li a:hover
+  {
+    color: #fff;
+    border: 4px solid {color:Theme Color};
+    background-color: {color:Theme Color};
+  }
+  ul.tags li a:before
+  {
+    content: '#';
+  }
+
+  /* kudos positioning css */
+  ul.tags+figure.bottom
+  {
+    margin-top: 80px !important;
+  }
+  @media only all and (max-width: 750px), (device-height: 1024px) and (device-width: 768px) and (orientation: portrait), (device-height: 1024px) and (device-width: 768px) and (orientation: landscape) {
+    ul.tags
+    {
+      margin-bottom: 80px !important;
+    }
+  }
+
+  /* notes css */
+  ol.notes
+  {
+    padding-left: 18px;
+    list-style: none;
+    margin: 80px 0 0 0 !important;
+    border-left: 10px solid {color:Theme Color};
+  }
+  li.note img.avatar
+  {
+    display: inline-block;
+    width: auto !important;
+  }
+  li.note span.action a
+  {
+    font-weight: 700;
+  }
+  li.note blockquote
+  {
+    border-left: none;
+  }
+  figure.bottom~ol.notes
+  {
+    margin-top: -15px !important;
+  }
+
+  @media (max-width: 750px) {
+    blockquote
+    {
+      padding-left: 18px !important;
+    }
+  }
+
+  /* http://pea.rs/content/data-table */
+  table{margin:0; padding:0}
+  table th, 
+  table td{padding:10px 20px; text-align:left; border-bottom:1px solid #ccc}
+  table th{border-width:2px}
+  table td{color:#666}
+  table tr:last-child th, 
+  table tr:last-child td{border-bottom:none}
+  table tr:nth-child(even){background:#eee}
+
+  /* github gist support */
+  div.gist {
+    font-size: 0.8em;
+    max-width: 500px;
+  }
+  </style>
+  <style type="text/css">
+    ul#user_nav li a:hover,figure.logo,aside.alsoby li a:hover,figure.kudo.complete div.filling
+    {
+      background-color:{color:Theme Color};
+    }
+
+    figure.logo a,aside#logo div a,figure.kudo.complete div.filling
+    {
+      background-image:url({Image:Logo});
+    }
+
+    section.preview header#begin h2,nav.pagination span.next a,nav.pagination span.prev a,aside.read_next a:hover h3,aside.read_next a:hover h4
+    {
+      color:{color:Theme Color};
+    }
+
+    ul#user_nav li a:hover,nav.pagination span.next a,nav.pagination span.prev a,aside.read_next a:hover h3,blockquote
+    {
+      border-color:{color:Theme Color};
+    }
+
+    aside.read_next a:hover span.arrow_down
+    {
+      border-top-color:{color:Theme Color};
+    }
+  </style>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script src="http://et15.x10.mx/theme-dcurtis.js"></script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{text:Google Analytics ID}']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body>
+
+<header id="sidebar">
+  <figure class="logo medium">
+    <a href="/">{Title}</a>
+  </figure>
+  <h1><a href="/">{text:Nickname}</a></h1>
+  <h2><a href="/">{Title}</a></h2>
+  <h3><p>{Description}</p></h3>
+  <ul id="user_nav">
+    {block:HasPages}
+      {block:Pages}
+    <li class="website"><a href="{URL}">{Label}</a></li>
+      {/block:Pages}
+    {/block:HasPages}
+    {block:IfTwitterUsername}
+    <li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}">@{text:Twitter Username}</a></li>
+    {/block:IfTwitterUsername}
+    {block:IfAppdotnetUsername}
+    <li class="link appdotnet icons"><a href="https://alpha.app.net/{text:App[dot]net Username}" rel="me">@{text:App dot net Username}</a></li>
+    {/block:IfAppdotnetUsername}
+    {block:AskEnabled}
+    <li class="link email"><a href="/ask">{AskLabel}</a></li>
+    {/block:AskEnabled}
+    {block:IfRssFeed}
+    <li class="link feed"><a href="{RSS}">feed</a></li>
+    {/block:IfRssFeed}
+    {block:IfArchiveLink}
+    <li class="link archive"><a href="/archive">archive</a></li>
+    {block:IfArchiveLink}
+  </ul>
+  <aside id="svbtle_linkback">
+    <a href="https://github.com/EricTendian/svbtle-tumblr"><span class="logo_square"><span class="logo_circle">&nbsp;</span></span>&nbsp;<span class="svbtle">Svbtle</span></a>
+  </aside>
+</header>
+{block:IndexPage}
+<section id="river">
+{/block:IndexPage}
+{block:PermalinkPage}
+<section id="river" class="post_single">
+{/block:PermalinkPage}
+  {block:IndexPage}
+  <header id="begin">
+    {block:IfSwiftypeSearchKey}
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input" />
+    </form>
+    <div id="st-results-container"></div>
+    <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+      (function() {
+        Swiftype.key = '{text:Swiftype Search Key}';
+        Swiftype.inputElement = '#st-search-input';
+        Swiftype.resultContainingElement = '#st-results-container';
+        Swiftype.attachElement = '#st-search-input';
+        Swiftype.renderStyle = "overlay";
+
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = "//swiftype.com/embed.js";
+        var entry = document.getElementsByTagName('script')[0];
+        entry.parentNode.insertBefore(script, entry);
+      }());
+    </script>
     <style type="text/css">
-    aside#logo,aside#logo div a,ul#user_meta a:hover span.link_logo_inside,ul#user_meta a:hover span.link_logo,aside.kudo.complete span.circle,ul.tags li {
-        background-color: {color:Theme Color};
+    form {
+      float: right;
+      margin-right: 40px;
+      margin-top: -7px;
     }
-
-    section.preview header#begin h2,ul#user_meta a:hover,nav.pagination span.next a,nav.pagination span.prev a {
-        color: {color:Theme Color};
+    input#st-search-input {
+        background-color: white;
+        border: 4px solid #F8F8F8;
+        font-family: 'proxima-nova','Helvetica','Avenir',sans-serif
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
     }
-
-    blockquote,ul#user_meta a:hover,nav.pagination span.next a,nav.pagination span.prev a,ol.notes {
-        border-color: {color:Theme Color};
+    div.swiftype {
+        font-family: 'proxima-nova','Helvetica','Avenir',sans-serif
     }
-
-    ::-moz-selection,::selection {
-        background: {color:Theme Color};
-        color:#fff;
-        text-shadow:none;
+    div.swiftype div.st-result-listing div.st-search-summary h2, div.swiftype div.st-result-listing .st-results div.st-result .st-result-text h3 a {
+        font-size: 14px;
     }
-
-    aside#logo div a,aside.kudo.complete span.circle{
-        background-image:url({Image:Logo});
+    div.swiftype div.st-result-listing .st-results div.st-result .st-result-text .st-metadata .st-snippet {
+        font-size: 13px;
     }
     </style>
-
-    {block:IndexPage}
-    <title>{Title}</title>
-    {/block:IndexPage}
-    {block:PermalinkPage}
-    <title>{block:PostTitle}{PostTitle} - {/block:PostTitle}{Title}</title>
-    {/block:PermalinkPage}
-
-
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '{text:Google Analytics ID}']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
-</head>
-
-<body>
-    <header id="sidebar">
-      <aside id="logo" class="clearfix">
-        <div class="clearfix">
-          <a href="/">{Title}</a>
-        </div>
-      </aside>
-      <ul id="user_meta">
-        <li class="blog_name">  
-          <h1 id="blog_name">
-              <a href="/">{text:Nickname}</a>
-          </h1>
-        </li>
-            <li class="blog_owner">  
-          <h2 id="blog_owner">
-            <a href="/">{Title}</a>
-          </h2>
-        </li>
-        <li class="tagline">
-          <h2 id="tagline">
-            {Description}
-          </h2>
-        </li>
-
-        {block:IfSwiftypeSearchKey}
-        <li class="link">
-            <form>
-            <input type="text" id="st-search-input" class="st-search-input" />
-            </form>
-        </li>
-        <div id="st-results-container"></div>
-        <script type="text/javascript">
-          var Swiftype = window.Swiftype || {};
-          (function() {
-            Swiftype.key = '{text:Swiftype Search Key}';
-            Swiftype.inputElement = '#st-search-input';
-            Swiftype.resultContainingElement = '#st-results-container';
-            Swiftype.attachElement = '#st-search-input';
-            Swiftype.renderStyle = "overlay";
-
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.async = true;
-            script.src = "//swiftype.com/embed.js";
-            var entry = document.getElementsByTagName('script')[0];
-            entry.parentNode.insertBefore(script, entry);
-          }());
-        </script>
-        <style type="text/css">
-        input#st-search-input {
-            margin-left: -15px;
-            background-color: white;
-            border: 4px solid #F8F8F8;
-            font-family: proxima-nova,sans-serif;
-            -webkit-box-shadow: none;
-            -moz-box-shadow: none;
-            box-shadow: none;
-        }
-        div.swiftype {
-            font-family: proxima-nova, sans-serif;
-        }
-        div.swiftype div.st-result-listing div.st-search-summary h2, div.swiftype div.st-result-listing .st-results div.st-result .st-result-text h3 a {
-            font-size: 14px;
-        }
-        div.swiftype div.st-result-listing .st-results div.st-result .st-result-text .st-metadata .st-snippet {
-            font-size: 13px;
-        }
-        </style>
-        {/block:IfSwiftypeSearchKey}
-
-        {block:HasPages}
-            {block:Pages}
-                <li class="link">
-                    <a href="{URL}">{Label}</a>
-                </li>
-            {/block:Pages}
-        {/block:HasPages}
-        
-        {block:IfTwitterUsername}
-            <li class="link twitter">
-                <a target="_blank" href="http://twitter.com/{text:Twitter Username}">@{text:Twitter Username}</a>
-            </li>
-        {/block:IfTwitterUsername}
-
-        {block:IfGithubUsername}
-            <li class="link github">
-                <a target="_blank" href="http://github.com/{text:Github Username}">github</a>
-            </li>
-        {/block:IfGithubUsername}
-
-        {block:IfContactEmail}
-            <li class="link email">
-                <a href="mailto:{text:Contact Email}">say hello</a>
-            </li>
-        {/block:IfContactEmail}
-        
-        {block:IfRssFeed}
-            <li class="link feed">
-                <a href="{RSS}">feed</a>
-            </li>
-        {/block:IfRssFeed}
-
-        {block:IfArchiveLink}
-            <li class="link">
-                <a href="/archive">archive</a>
-            </li>
-        {block:IfArchiveLink}
-
-      </ul>
-      <aside id="svbtle_linkback">
-        <a href="https://github.com/erict15/svbtle-tumblr">
-          <span class="logo_square"><span class="logo_circle">&nbsp;</span></span>&nbsp;<span class="svbtle">svbtle</span>
+    {/block:IfSwiftypeSearchKey}
+    <time datetime="2006-11-06">November 8, 2006</time>
+  </header>
+  {/block:IndexPage}
+{block:Posts}
+  {block:PermalinkPage}
+  <header id="begin">
+    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{Month} {DayOfMonth}, {Year}</time>
+  </header>
+  {/block:PermalinkPage}
+  <article id="eid{PostID}" class="post" data-reblog="{ReblogURL}" data-id="{PostID}">
+  {block:Text}
+    {block:Title}
+    <h2>
+      <a href="{Permalink}" class="no-link title">{Title}</a>
+    </h2>
+    {/block:Title}
+    {Body}
+  {/block:Text}
+  {block:Photo}
+    <h2>
+      <a href="{Permalink}" class="no-link title">Photo</a>
+    </h2>
+    <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></a>
+    {block:Caption}
+    <p>{Caption}</p>
+    {/block:Caption}
+  {/block:Photo}
+  {block:Panorama}
+    <h2>
+      <a href="{Permalink}" class="no-link title">Panorama</a>
+    </h2>
+    {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+    {block:Caption}
+    <p>{Caption}</p>
+    {/block:Caption}
+  {/block:Panorama}
+  {block:Photoset}
+    <h2>
+      <a href="{Permalink}" class="no-link title">Photoset</a>
+    </h2>
+    {block:Photos}
+      <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" alt="{PhotoAlt}"/></a>
+      {block:Caption}
+      <p>{Caption}</p>
+      {/block:Caption}
+    {/block:Photos}
+    {block:Caption}
+    <p>{Caption}</p>
+    {/block:Caption}
+  {/block:Photoset}
+  {block:Quote}
+    <h2>
+      <a href="{Permalink}" class="no-link title">Quote</a>
+    </h2>
+    <blockquote>"{Quote}"</blockquote>
+    {block:Source}
+    <h2>{Source}</h2>
+    {/block:Source}
+  {/block:Quote}
+  {block:Link}
+    <h2>
+      <a href="{URL}" class="title"{Target}>{Name}</a><a href="{Permalink}" class="anchor"><img src="https://d1yg14i6wd46hx.cloudfront.net/cargo/icons/anchor_gray-e725a3474b42754f4be90c7c6c1de5f5.svg" alt="Article permalink" class="scalable"></a>
+    </h2>
+    {block:Description}
+    {Description}
+    {/block:Description}
+  {/block:Link}
+  {block:Chat}
+    <h2>
+      <a href="{Permalink}" class="no-link title">Conversation</a>
+    </h2>
+    <ul class="chat">
+        {block:Lines}<li class="{Alt}">{block:Label} {Label} {/block:Label}{Line}</li>{/block:Lines}
+    </ul>
+  {/block:Chat}
+  {block:Video}
+    <h2>
+      <a href="{Permalink}" class="no-link title">Video</a>
+    </h2>
+    {Video-500}
+    {block:Caption}
+    <p>{Caption}</p>
+    {/block:Caption}
+  {/block:Video}
+  {block:Audio}
+    <h2>
+      <a href="{Permalink}" class="no-link title">Audio</a>
+    </h2>
+    {AudioPlayerBlack}
+    {block:Caption}
+    <p>{Caption}</p>
+    {/block:Caption}
+  {/block:Audio}
+  {block:Answer}
+    <h2>
+      <a href="{Permalink}" class="no-link title">Answer</a>
+    </h2>
+  {/block:Answer}
+    {block:HasTags}
+    <ul class="tags">
+    {block:Tags}
+      <li><a href="{TagURL}">{Tag}</a></li>
+    {/block:Tags}
+    </ul>
+    {/block:HasTags}
+    <figure class="kudo able" id="kudo_post{PostID}">
+        <a href="#kudo">
+          <div class="filling">&nbsp;</div>
+          <div class="num">{NoteCount}</div> 
+          <div class="txt">Notes</div>
         </a>
-      </aside>
-    </header>
-    
-    <section id="river" role="main">
-    {block:IndexPage}
-    <header id="begin">
-        <time datetime="" id="top_time"></time>
-        <script type="text/javascript">
-        var date = new Date();
-        $("#top_time").html(date.toLocaleDateString().replace('Monday, ','').replace('Tuesday, ','').replace('Wednesday, ','').replace('Thursday, ','').replace('Friday, ','').replace('Saturday, ','').replace('Sunday, ',''));
-        $("#top_time").attr('datetime', date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate());
-        </script>
-    </header>
-    {/block:IndexPage}
-    {block:Posts}
-        {block:PermalinkPage}
-        <header id="begin">
-            <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" id="top_time">{Month} {DayOfMonth}, {Year}</time>
-        </header>
-        {/block:PermalinkPage}
-
-        {block:Text}
-            <article class="post" id="post{PostID}">
-                {block:Title}
-                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">{Title}</a></h2>
-                {/block:Title}
-                <div class="entry-content">
-                    {Body}
-                </div>
-                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
-                    <a href="{ReblogURL}" class="kudobject">
-                        <div class="opening clearfix">
-                            <span class="circle">&nbsp;</span>
-                        </div>
-                    </a>
-                    <a href="{Permalink}" class="counter">
-                        <span class="num">{NoteCount}</span>
-                        <span class="txt">Notes</span>
-                    </a>
-                </aside>
-            </article>
-        {/block:Text}
-        {block:Photo}
-            <article class="post" id="post{PostID}">
-                <div class="entry-content">
-                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Photo</a></h2>
-                    <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></a>
-                    {block:Caption}
-                        <h2>{Caption}</h2>
-                    {/block:Caption}
-                </div>
-                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
-                    <a href="{ReblogURL}" class="kudobject">
-                        <div class="opening clearfix">
-                            <span class="circle">&nbsp;</span>
-                        </div>
-                    </a>
-                    <a href="{Permalink}" class="counter">
-                        <span class="num">{NoteCount}</span>
-                        <span class="txt">Notes</span>
-                    </a>
-                </aside>
-            </article>
-        {/block:Photo}
-        {block:Photoset}
-             <article class="post" id="post{PostID}">
-                <div class="entry-content">
-                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Photoset</a></h2>
-                    {block:Photos}
-                        <img src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" alt="{PhotoAlt}"/>
-                        
-                        {block:Caption}
-                            <h3>{Caption}</h3>
-                        {/block:Caption}
-                    {/block:Photos}
-                    
-                    {block:Caption}
-                        <h2>{Caption}</h2>
-                    {/block:Caption}
-                </div>
-                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
-                    <a href="{ReblogURL}" class="kudobject">
-                        <div class="opening clearfix">
-                            <span class="circle">&nbsp;</span>
-                        </div>
-                    </a>
-                    <a href="{Permalink}" class="counter">
-                        <span class="num">{NoteCount}</span>
-                        <span class="txt">Notes</span>
-                    </a>
-                </aside>
-            </article>   
-        {/block:Photoset}
-        {block:Quote}
-            <article class="post" id="post{PostID}">
-                <div class="entry-content">
-                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Quote</a></h2>
-                    <blockquote>
-                        "{Quote}"
-                    </blockquote>
-                    {block:Source}
-                        <h2>{Source}</h2>
-                    {/block:Source}
-                </div>
-                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
-                    <a href="{ReblogURL}" class="kudobject">
-                        <div class="opening clearfix">
-                            <span class="circle">&nbsp;</span>
-                        </div>
-                    </a>
-                    <a href="{Permalink}" class="counter">
-                        <span class="num">{NoteCount}</span>
-                        <span class="txt">Notes</span>
-                    </a>
-                </aside>
-            </article>    
-        {/block:Quote}
-        {block:Link}
-            <article class="post" id="post{PostID}">
-                <h2 class="entry-title"><a href="{URL}" class="no-link title" {Target}>{Name}</a></h2>
-                <div class="entry-content">{block:Description}{Description}{/block:Description}</div>
-                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
-                    <a href="{ReblogURL}" class="kudobject">
-                        <div class="opening clearfix">
-                            <span class="circle">&nbsp;</span>
-                        </div>
-                    </a>
-                    <a href="{Permalink}" class="counter">
-                        <span class="num">{NoteCount}</span>
-                        <span class="txt">Notes</span>
-                    </a>
-                </aside>
-            </article>
-        {/block:Link}       
-        {block:Video}
-            <article class="post" id="post{PostID}">
-                <div class="entry-content">
-                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Video</a></h2>
-                    {Video-500}
-                    {block:Caption}
-                        <h2>{Caption}</h2>
-                    {/block:Caption}
-                </div>
-                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
-                    <a href="{ReblogURL}" class="kudobject">
-                        <div class="opening clearfix">
-                            <span class="circle">&nbsp;</span>
-                        </div>
-                    </a>
-                    <a href="{Permalink}" class="counter">
-                        <span class="num">{NoteCount}</span>
-                        <span class="txt">Notes</span>
-                    </a>
-                </aside>
-            </article>
-        {/block:Video}
-        {block:Audio}
-            <article class="post" id="post{PostID}">
-                <div class="entry-content">
-                    <h2 class="entry-title"><a href="{Permalink}" class="no-link title">Audio</a></h2>
-                    {AudioPlayerBlack}
-                    {block:Caption}
-                        <h2 class="entry-title">{Caption}</h2>
-                    {/block:Caption}
-                </div>
-                <aside class="kudo kudoable" id="kudo{PostID}" data-reblog="{ReblogURL}" data-id="{PostID}">
-                    <a href="{ReblogURL}" class="kudobject">
-                        <div class="opening clearfix">
-                            <span class="circle">&nbsp;</span>
-                        </div>
-                    </a>
-                    <a href="{Permalink}" class="counter">
-                        <span class="num">{NoteCount}</span>
-                        <span class="txt">Notes</span>
-                    </a>
-                </aside>
-            </article>
-        {/block:Audio}
-        {block:HasTags}
-            <ul class="tags">
-                {block:Tags}
-                    <li>
-                        <a href="{TagURL}">{Tag}</a>
-                    </li>
-                {/block:Tags}
-            </ul>
-        {/block:HasTags}
-        <script type="text/javascript">
-        $("#kudo{PostID} span.num").text($("#kudo{PostID} span.num").text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-        </script>
-    {/block:Posts}
-
-    {block:IfDisqusShortname}
-    {block:PermalinkPage}
-    <div id="disqus_thread" style="padding:40px"></div>
-    <script type="text/javascript">
-        /* * * DISQUS CONFIGURATION * * */
-        var disqus_shortname = '{text:Disqus Shortname}';
-        var disqus_url = '{Permalink}';
-        var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    {/block:PermalinkPage}
-    {/block:IfDisqusShortname}
-
+    </figure>
     {block:PostNotes}
     {PostNotes}
     {/block:PostNotes}
+  </article>
+  <script type="text/javascript">
+  $("#kudo_eid{PostID} div.num").text($("#kudo_eid{PostID} div.num").text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+  </script>
+{/block:Posts}
+{block:IfDisqusShortname}
+{block:PermalinkPage}
+<div id="disqus_thread" style="padding:40px"></div>
+<script type="text/javascript">
+    /* * * DISQUS CONFIGURATION * * */
+    var disqus_shortname = '{text:Disqus Shortname}';
+    var disqus_url = '{Permalink}';
+    var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
 
-    <footer id="paginate">
-        <nav class="pagination">
-            <span class="page gap"></span>
-            {block:PermalinkPage}
-                <span class="prev">
-                    <a href="/" class="back_to_blog" id="backbutton">&larr;&nbsp;&nbsp;&nbsp;Read more</a>
-                </div>
-            {/block:PermalinkPage}
-            {block:PreviousPage}
-                <span class="prev">
-                    <a id="prev" class="prev" href="{PreviousPage}">&larr;&nbsp;&nbsp;&nbsp;Newer</a>
-                </span>
-            {/block:PreviousPage}
-            {block:NextPage}
-                <span class="next">
-                    <a id="next" class="continue" href="{NextPage}">Continue&nbsp;&nbsp;&nbsp;&rarr;</a>
-                </span>
-            {/block:NextPage}
-        </nav>
-    </footer>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+{/block:PermalinkPage}
+{/block:IfDisqusShortname}
+
+  <nav class="pagination">
+    <span class="page gap"></span>
+    {block:PermalinkPage}
+        <span class="prev">
+            <a href="/" class="back_to_blog" id="backbutton">&larr;&nbsp;&nbsp;&nbsp;Full blog</a>
+        </div>
+    {/block:PermalinkPage}
+    {block:PreviousPage}
+        <span class="prev">
+            <a id="prev" class="prev" href="{PreviousPage}">&larr;&nbsp;&nbsp;&nbsp;Newer</a>
+        </span>
+    {/block:PreviousPage}
+    {block:NextPage}
+        <span class="next">
+            <a id="next" class="continue" href="{NextPage}">Continue&nbsp;&nbsp;&nbsp;&rarr;</a>
+        </span>
+    {/block:NextPage}
+  </nav>
+
+  <section id="fin">
+    <p class="legal"><a href="/">&copy; 2013 {Title}</a></p>
+  </section>
 </section>
-
-<iframe id="my-like-frame" style="display:none;"></iframe>
+<iframe id="kudos" style="display:none;"></iframe>
 </body>
 </html>

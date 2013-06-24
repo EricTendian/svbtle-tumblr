@@ -3,14 +3,20 @@ svbtle-tumblr
 
 A Tumblr theme inspired by [Dustin Curtis](http://dcurt.is/)'s [Svbtle](https://svbtle.com/). Check out it in action at my blog [erictendian.tk](http://erictendian.tk/).
 
-###Features
+License
+-------
+This Tumblr theme by @EricTendian is licensed under a [Creative Commons Attribution-NonCommercial 3.0 Unported License](http://creativecommons.org/licenses/by-nc/3.0/deed.en_US). Based on a work at [svbtle-theme.tumblr.com](http://svbtle-theme.tumblr.com/). Site design inspired by [Dustin Curtis](http://dcurt.is/)'s [Svbtle](https://svbtle.com/).
+
+Features
+--------
 * Customizable colors
 * RSS Feed link
 * Archive link
+* Ask link
 * Custom logo
 * Disqus integration
 * Swiftype search integration
-* Links to Github, Twitter, and your email
+* Links to Twitter and your pages
 * Google Analytics support
 
 ###[Example site](http://erictendian.tk/)
