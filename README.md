@@ -1,7 +1,7 @@
 svbtle-tumblr
 =============
 
-A Tumblr theme inspired by [Dustin Curtis](http://dcurt.is/)'s [Svbtle](https://svbtle.com/). Check out it in action at my blog [erictendian.tk](http://erictendian.tk/).
+A Tumblr theme inspired by [Dustin Curtis](http://dcurt.is/)'s [Svbtle](https://svbtle.com/). Check out it in action at [svbtle-theme.tumblr.com](http://svbtle-theme.tumblr.com/).
 
 License
 -------
