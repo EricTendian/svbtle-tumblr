@@ -383,11 +383,7 @@ if (function (t, e) {
     }
 
     function n(t) {
-        t.addClass("activated"), t.find(".num").hide(), t.find(".txt").html("Don&rsquo;t move"), i = setTimeout(function () {
-            clearTimeout(i), r(t), t.find(".txt").fadeOut(), t.addClass("complete"), setTimeout(function () {
-                t.removeClass("activated").removeClass("able"), t.find(".num").fadeIn(), t.find(".txt").html("Notes").fadeIn()
-            }, 600)
-        }, 1e3)
+        t.addClass("activated"), t.find(".num").hide(), t.find(".txt").html("Click circle");
     }
 
     function r(t) {
@@ -410,15 +406,47 @@ if (function (t, e) {
             return t.preventDefault(), !1
         },
         mouseenter: function () {
-            kudo = $(this).parent(), kudo.is(".able") && n(kudo)
+            kudo = $(this).parent();
+            if (kudo.find(".like_button").is(".liked")) {
+                kudo.removeClass("able").addClass("complete");
+                kudo.find("div.liked").remove();
+            } else kudo.is(".able") && n(kudo);
         },
         mouseleave: function () {
-            kudo = $(this).parent(), kudo.find(".num").show(), kudo.find(".txt").html("Notes"), kudo.removeClass("activated"), clearTimeout(i)
+            kudo = $(this).parent();
+            if (kudo.find(".like_button").is(".liked")) {
+                var n = parseInt(kudo.find("div.num").text().replace(/,/g, "")) + 1;
+                kudo.find("div.num").text(n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                kudo.find("div.liked").remove();
+                kudo.find(".txt").fadeOut(), kudo.addClass("complete"), setTimeout(function () {
+                    kudo.removeClass("activated").removeClass("able"), kudo.find(".num").fadeIn(), kudo.find(".txt").html("Notes").fadeIn()
+                }, 600)
+            } else {
+                kudo.find(".num").show(), kudo.find(".txt").html("Notes"), kudo.removeClass("activated"), clearTimeout(i)
+            }
         }
     }), $("figure.kudo a").on("touchstart", function (t) {
-        return kudo = $(this).parent(), kudo.is(".able") && n(kudo), t.preventDefault(), !1
+        kudo = $(this).parent();
+        if (kudo.find(".like_button").is(".liked")) {
+            kudo.removeClass("able").addClass("complete");
+            kudo.find("div.liked").remove();
+        } else kudo.is(".able") && n(kudo);
+        t.preventDefault();
+        return !1;
     }), $("figure.kudo a").on("touchend", function (t) {
-        clearTimeout(i), kudo = $(this).parent(), kudo.find(".num").show(), kudo.find(".txt").html("Notes"), kudo.removeClass("activated"), t.preventDefault()
+        kudo = $(this).parent();
+        if (kudo.find(".like_button").is(".liked")) {
+            var n = parseInt(kudo.find("div.num").text().replace(/,/g, "")) + 1;
+            kudo.find("div.num").text(n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            kudo.find("div.liked").remove();
+            kudo.find(".txt").fadeOut(), kudo.addClass("complete"), setTimeout(function () {
+                kudo.removeClass("activated").removeClass("able"), kudo.find(".num").fadeIn(), kudo.find(".txt").html("Notes").fadeIn()
+            }, 600)
+        } else {
+            kudo.find(".num").show(), kudo.find(".txt").html("Notes"), kudo.removeClass("activated"), clearTimeout(i)
+        }
+        t.preventDefault();
+        return !1;
     })
 }), function () {
     function t() {}

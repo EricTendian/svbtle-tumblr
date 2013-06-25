@@ -26,6 +26,7 @@
   {/block:Description}
   <meta property="og:title" content="{block:PostTitle}{PostTitle} • {/block:PostTitle}{Title}" />
   <meta property="og:type" content="blog">
+  <meta property="og:image" content="{Favicon}">
   <meta property="og:site_name" property="{block:PostTitle}{PostTitle} • {/block:PostTitle}{Title}">
   {block:Description}
   <meta property="og:description" content="{MetaDescription}"/>
@@ -33,125 +34,11 @@
   
   <link rel="shortcut icon" href="{Favicon}">
   <link rel="alternate" type="application/rss+xml" href="{RSS}">
-  <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/wPMmow7pq/style.min.css" media="screen">
   <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/1zKmow7hn/fonts.css" media="screen, print">
+  <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/wPMmow7pq/style.min.css" media="screen">
+  <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/9VJmoy3zb/style-extend.css" media="screen">
   <style type="text/css">
-  /* chat css */
-  ul.chat
-  {
-    list-style: none !important;
-    margin: 0;
-    padding: 0;
-  }
-  ul.chat li
-  {
-    margin-bottom: 2%;
-    padding: 2%;
-    width: 50%;
-  }
-  ul.chat .odd {
-    background: rgb(236, 236, 236);
-  }
-  ul.chat .even {
-    background: rgb(166, 230, 255);
-  }
-
-  /* tags css */
-  ul.tags
-  {
-    list-style: none !important;
-    margin: 20px 0 0 0;
-    clear: both;
-  }
-  ul.tags li
-  {
-    float: left;
-    margin-right: 15px !important;
-    line-height: 24px !important;
-  }
-  ul.tags li a
-  {
-    display: inline-block;
-    font-family: 'proxima-nova','Helvetica','Avenir',sans-serif;
-    padding: 0 10px;
-    border: 4px solid #f8f8f8;
-    background-color: #fff;
-    color: #111;
-  }
-  ul.tags li a:hover
-  {
-    color: #fff;
-    border: 4px solid {color:Theme Color};
-    background-color: {color:Theme Color};
-  }
-  ul.tags li a:before
-  {
-    content: '#';
-  }
-
-  /* kudos positioning css */
-  ul.tags+figure.bottom
-  {
-    margin-top: 80px !important;
-  }
-  @media only all and (max-width: 750px), (device-height: 1024px) and (device-width: 768px) and (orientation: portrait), (device-height: 1024px) and (device-width: 768px) and (orientation: landscape) {
-    ul.tags
-    {
-      margin-bottom: 80px !important;
-    }
-  }
-
-  /* notes css */
-  ol.notes
-  {
-    padding-left: 18px;
-    list-style: none;
-    margin: 80px 0 0 0 !important;
-    border-left: 10px solid {color:Theme Color};
-  }
-  li.note img.avatar
-  {
-    display: inline-block;
-    width: auto !important;
-  }
-  li.note span.action a
-  {
-    font-weight: 700;
-  }
-  li.note blockquote
-  {
-    border-left: none;
-  }
-  figure.bottom~ol.notes
-  {
-    margin-top: -15px !important;
-  }
-
-  @media (max-width: 750px) {
-    blockquote
-    {
-      padding-left: 18px !important;
-    }
-  }
-
-  /* http://pea.rs/content/data-table */
-  table{margin:0; padding:0}
-  table th, 
-  table td{padding:10px 20px; text-align:left; border-bottom:1px solid #ccc}
-  table th{border-width:2px}
-  table td{color:#666}
-  table tr:last-child th, 
-  table tr:last-child td{border-bottom:none}
-  table tr:nth-child(even){background:#eee}
-
-  /* github gist support */
-  div.gist {
-    font-size: 0.8em;
-    max-width: 500px;
-  }
-  </style>
-  <style type="text/css">
-    ul#user_nav li a:hover,figure.logo,aside.alsoby li a:hover,figure.kudo.complete div.filling
+    ul#user_nav li a:hover,ul.tags li a:hover,figure.logo,aside.alsoby li a:hover,figure.kudo.complete div.filling
     {
       background-color:{color:Theme Color};
     }
@@ -166,7 +53,7 @@
       color:{color:Theme Color};
     }
 
-    ul#user_nav li a:hover,nav.pagination span.next a,nav.pagination span.prev a,aside.read_next a:hover h3,blockquote
+    ul#user_nav li a:hover,ul.tags li a:hover,nav.pagination span.next a,nav.pagination span.prev a,aside.read_next a:hover h3,blockquote
     {
       border-color:{color:Theme Color};
     }
@@ -175,9 +62,14 @@
     {
       border-top-color:{color:Theme Color};
     }
+
+    ol.notes
+    {
+      border-left-color: {color:Theme Color};
+    }
   </style>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-  <script src="http://static.tumblr.com/rb82j8l/cPmmow7is/theme.js"></script>
+  <script src="http://static.tumblr.com/rb82j8l/gCMmoy39n/theme.js"></script>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', '{text:Google Analytics ID}']);
@@ -231,7 +123,6 @@
 {block:PermalinkPage}
 <section id="river" class="post_single">
 {/block:PermalinkPage}
-  {block:IndexPage}
   <header id="begin">
     {block:IfSwiftypeSearchKey}
     <form>
@@ -280,16 +171,26 @@
     }
     </style>
     {/block:IfSwiftypeSearchKey}
-    <time datetime="2006-11-06">November 8, 2006</time>
-  </header>
-  {/block:IndexPage}
+    {block:IndexPage}
+    <time datetime=""></time>
+    <script>
+    var objToday = new Date();
+    var months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    var datetime = objToday.getFullYear() + "-" + objToday.getMonth() + "-" + objToday.getDate();
+    var date = months[objToday.getMonth()] + " " + objToday.getDate() + ", " + objToday.getFullYear();
+    $(function() {
+      $("time").attr("datetime", datetime);
+      $("time").text(date);
+    });
+    </script>
+    {/block:IndexPage}
 {block:Posts}
-  {block:PermalinkPage}
-  <header id="begin">
+    {block:PermalinkPage}
     <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{Month} {DayOfMonth}, {Year}</time>
+    {/block:PermalinkPage}
   </header>
-  {/block:PermalinkPage}
-  <article id="eid{PostID}" class="post" data-reblog="{ReblogURL}" data-id="{PostID}">
+  
+  <article id="eid{PostID}" class="post">
   {block:Text}
     {block:Title}
     <h2>
@@ -341,7 +242,22 @@
   {/block:Quote}
   {block:Link}
     <h2>
-      <a href="{URL}" class="title"{Target}>{Name}</a><a href="{Permalink}" class="anchor"><img src="https://d1yg14i6wd46hx.cloudfront.net/cargo/icons/anchor_gray-e725a3474b42754f4be90c7c6c1de5f5.svg" alt="Article permalink" class="scalable"></a>
+      <a href="{URL}" class="title"{Target}>{Name}</a><a href="{Permalink}" class="anchor">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="92.096px" height="100px" viewBox="0 0 92.096 100" enable-background="new 0 0 92.096 100" xml:space="preserve" title="Article permalink">
+        <path fill="#71716F" d="M46.65,19.451c-3.098,0-5.638-2.543-5.638-5.662c0-3.146,2.542-5.671,5.638-5.671
+          c3.144,0,5.669,2.525,5.669,5.671C52.318,16.908,49.792,19.451,46.65,19.451z M92.404,69.044l-3.018-18.808
+          c-0.352-1.758-1.886-3.097-3.716-3.097c-1.114,0-2.098,0.476-2.818,1.237L68.948,61.419c-0.229,0.196-0.45,0.419-0.648,0.697
+          c-1.308,1.782-0.936,4.307,0.848,5.637c0.34,0.253,0.713,0.42,1.085,0.569l3.492,1.162c-3.366,9.504-11.586,16.732-21.683,18.735
+          l0.022-61.741c4.949-2.106,8.369-7.007,8.369-12.691C60.433,6.163,54.273,0,46.647,0c-7.593,0-13.778,6.162-13.778,13.79
+          c0,5.684,3.541,10.584,8.466,12.691l0.022,61.835c-10.315-1.854-18.853-9.152-22.298-18.832l3.516-1.161
+          c0.374-0.149,0.745-0.316,1.094-0.569c1.782-1.33,2.179-3.855,0.84-5.637c-0.199-0.278-0.396-0.5-0.643-0.697L9.954,48.377
+          c-0.688-0.761-1.702-1.236-2.796-1.236c-1.853,0-3.412,1.337-3.74,3.095L0.402,69.044c-0.07,0.293-0.094,0.618-0.094,0.942
+          c0,2.227,1.804,4.031,4.029,4.031c0.42,0,0.817-0.045,1.189-0.174l3.27-1.062C13.992,88.572,28.863,100,46.404,100
+          c17.539,0,32.419-11.432,37.613-27.243l3.263,1.084c0.373,0.127,0.771,0.175,1.188,0.175c2.233,0,4.038-1.804,4.038-4.031
+          C92.504,69.662,92.473,69.337,92.404,69.044z"></path>
+        <rect x="24.907" y="34.5" fill="#71716F" width="43" height="11"></rect>
+      </svg>
+      </a>
     </h2>
     {block:Description}
     {Description}
@@ -387,7 +303,8 @@
     {/block:HasTags}
     <figure class="kudo able" id="kudo_post{PostID}">
         <a href="#kudo">
-          <div class="filling">&nbsp;</div>
+          <div class="cover filling" style="pointer-events:none; z-index: 2;">&nbsp;</div>
+          {LikeButton color="black"}
           <div class="num">{NoteCount}</div> 
           <div class="txt">Notes</div>
         </a>
@@ -400,6 +317,17 @@
   $("#kudo_eid{PostID} div.num").text($("#kudo_eid{PostID} div.num").text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
   </script>
 {/block:Posts}
+<script type="text/javascript">
+$(function() {
+  $(".like_button").addClass("filling");
+  $(".like_button iframe").css({'width':'35px','height':'35px','position':'absolute','top':'4px','left':'3px'});
+  setTimeout(function() {
+    kudos = $("figure.kudo a div.liked").parent().parent();
+    kudos.removeClass("able").addClass("complete");
+    kudos.find("div.liked").remove();
+  }, 3000);
+});
+</script>
 {block:IfDisqusShortname}
 {block:PermalinkPage}
 <div id="disqus_thread" style="padding:40px"></div>
@@ -421,13 +349,10 @@
 {/block:PermalinkPage}
 {/block:IfDisqusShortname}
 
+  {block:IndexPage}
+  {block:Pagination}
   <nav class="pagination">
     <span class="page gap"></span>
-    {block:PermalinkPage}
-        <span class="prev">
-            <a href="/" class="back_to_blog" id="backbutton">&larr;&nbsp;&nbsp;&nbsp;Full blog</a>
-        </div>
-    {/block:PermalinkPage}
     {block:PreviousPage}
         <span class="prev">
             <a id="prev" class="prev" href="{PreviousPage}">&larr;&nbsp;&nbsp;&nbsp;Newer</a>
@@ -439,11 +364,20 @@
         </span>
     {/block:NextPage}
   </nav>
+  {/block:Pagination}
+  {/block:IndexPage}
+  {block:PermalinkPage}
+  <nav class="pagination">
+    <span class="page gap"></span>
+        <span class="prev">
+            <a href="/" class="back_to_blog" id="backbutton">&larr;&nbsp;&nbsp;&nbsp;Full blog</a>
+        </div>
+  </nav>
+  {/block:PermalinkPage}
 
   <section id="fin">
     <p class="legal"><a href="/">&copy; 2013 {Title}</a></p>
   </section>
 </section>
-<iframe id="kudos" style="display:none;"></iframe>
 </body>
 </html>
