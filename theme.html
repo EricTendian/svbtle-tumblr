@@ -36,7 +36,7 @@
   <link rel="alternate" type="application/rss+xml" href="{RSS}">
   <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/1zKmow7hn/fonts.css" media="screen, print">
   <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/wPMmow7pq/style.min.css" media="screen">
-  <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/9VJmoy3zb/style-extend.css" media="screen">
+  <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/pvXmpv8vw/style-extend.css" media="screen">
   <style type="text/css">
     ul#user_nav li a:hover,ul.tags li a:hover,figure.logo,aside.alsoby li a:hover,figure.kudo.complete div.filling
     {
@@ -294,13 +294,6 @@
       <a href="{Permalink}" class="no-link title">Answer</a>
     </h2>
   {/block:Answer}
-    {block:HasTags}
-    <ul class="tags">
-    {block:Tags}
-      <li><a href="{TagURL}">{Tag}</a></li>
-    {/block:Tags}
-    </ul>
-    {/block:HasTags}
     <figure class="kudo able" id="kudo_post{PostID}">
         <a href="#kudo">
           <div class="cover filling" style="pointer-events:none; z-index: 2;">&nbsp;</div>
@@ -309,6 +302,33 @@
           <div class="txt">Notes</div>
         </a>
     </figure>
+    {block:IfDisqusShortname}
+    {block:PermalinkPage}
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * DISQUS CONFIGURATION * * */
+        var disqus_shortname = '{text:Disqus Shortname}';
+        var disqus_url = '{Permalink}';
+        var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    {/block:PermalinkPage}
+    {/block:IfDisqusShortname}
+    {block:HasTags}
+    <ul class="tags">
+    {block:Tags}
+      <li><a href="{TagURL}">{Tag}</a></li>
+    {/block:Tags}
+    </ul>
+    {/block:HasTags}
     {block:PostNotes}
     {PostNotes}
     {/block:PostNotes}
@@ -320,7 +340,6 @@
 <script type="text/javascript">
 $(function() {
   $(".like_button").addClass("filling");
-  $(".like_button iframe").css({'width':'35px','height':'35px','position':'absolute','top':'4px','left':'3px'});
   setTimeout(function() {
     kudos = $("figure.kudo a div.liked").parent().parent();
     kudos.removeClass("able").addClass("complete");
@@ -328,26 +347,6 @@ $(function() {
   }, 3000);
 });
 </script>
-{block:IfDisqusShortname}
-{block:PermalinkPage}
-<div id="disqus_thread" style="padding:40px"></div>
-<script type="text/javascript">
-    /* * * DISQUS CONFIGURATION * * */
-    var disqus_shortname = '{text:Disqus Shortname}';
-    var disqus_url = '{Permalink}';
-    var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-{/block:PermalinkPage}
-{/block:IfDisqusShortname}
 
   {block:IndexPage}
   {block:Pagination}

@@ -24,6 +24,7 @@ ul.tags
   list-style: none !important;
   margin: 20px 0 0 0;
   clear: both;
+  max-width: 700px !important;
 }
 ul.tags li
 {
@@ -51,19 +52,17 @@ ul.tags li a:before
 }
 
 /* kudos positioning css */
-ul.tags+figure.bottom
+figure.bottom
 {
-  margin-top: 80px !important;
+  margin-top: 30px !important;
 }
-@media only all and (max-width: 750px), (device-height: 1024px) and (device-width: 768px) and (orientation: portrait), (device-height: 1024px) and (device-width: 768px) and (orientation: landscape) {
-  ul.tags
-  {
-    margin-bottom: 80px !important;
-  }
-}
-article iframe
-{
-  min-height: auto;
+.like_button iframe {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  min-height: 0;
 }
 figure.kudo div.like{
   position: absolute;
@@ -74,6 +73,7 @@ figure.kudo div.like{
 /* notes css */
 ol.notes
 {
+  clear: both;
   padding-left: 18px;
   list-style: none;
   margin: 80px 0 0 0 !important;
@@ -91,10 +91,6 @@ li.note span.action a
 li.note blockquote
 {
   border-left: none;
-}
-figure.bottom~ol.notes
-{
-  margin-top: -15px !important;
 }
 
 @media (max-width: 750px) {
@@ -121,6 +117,10 @@ article h2 a.anchor svg
   border: 0;
   vertical-align: bottom;
   padding-top: 7px;
+}
+
+header#begin time {
+  position: static;
 }
 
 /* http://pea.rs/content/data-table */
