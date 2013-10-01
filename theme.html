@@ -60,13 +60,13 @@
   <a id="master_indicator" href="#show-drop">&nbsp;</a>
   <ul id="master_drop">
     <li><h5><a href="https://svbtle.com">{Title}<br/>is writing on the<br/><span>Svbtle</span> network.</a></h5></li>
+    {block:IfTwitterUsername}<li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}" class="twitter_head">@{text:Twitter Username}&nbsp;on&nbsp;twitter</a></li>{/block:IfTwitterUsername}
+    {block:IfAppdotnetUsername}<li class="link adn icons"><a href="https://alpha.app.net/{text:Twitter Username}" class="adn_head" rel="me">@{text:Twitter Username}&nbsp;on&nbsp;app.net</a></li>{/block:IfAppdotnetUsername}
     {block:HasPages}
       {block:Pages}
     <li class="link"><a href="{URL}">{Label}</a></li>
       {/block:Pages}
     {/block:HasPages}
-    {block:IfTwitterUsername}<li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}" class="twitter_head">@{text:Twitter Username}&nbsp;on&nbsp;twitter</a></li>{/block:IfTwitterUsername}
-    {block:IfAppdotnetUsername}<li class="link adn icons"><a href="https://alpha.app.net/{text:Twitter Username}" class="adn_head" rel="me">@{text:Twitter Username}&nbsp;on&nbsp;app.net</a></li>{/block:IfAppdotnetUsername}
     {block:AskEnabled}<li class="link email"><a href="/ask">say&nbsp;hello</a></li>{/block:AskEnabled}
     {block:IfRssFeed}<li class="link feed"><a href="{RSS}">rss</a></li>{/block:IfRssFeed}
     {block:IfArchiveLink}<li class="link archive"><a href="/archive">archive</a></li>{/block:IfArchiveLink}
@@ -94,102 +94,6 @@
     <h2 id="page_title"><a href="/">{Title}</a></h2>
     <h3 id="page_subtitle">{Description}</h3>
   </header>
-  {block:PermalinkPage}{block:Posts}
-  <article id="eid{PostID}" class="post {block:Link}linked {/block:Link}oldx">
-    <h1 class="article_title">
-      {block:Link}<a href="{URL}">{Name}</a>{/block:Link}
-      <a href="{Permalink}"{block:Link} class="anchor"{/block:Link}>
-        {block:Text}{Title}{/block:Text}
-        {block:Photo}Photo{/block:Photo}
-        {block:Panorama}Panorama{/block:Panorama}
-        {block:Photoset}Photos{/block:Photoset}
-        {block:Quote}Quote{/block:Quote}
-        {block:Link}&nbsp;{/block:Link}
-        {block:Chat}Conversation{/block:Chat}
-        {block:Video}Video{/block:Video}
-        {block:Audio}Audio{/block:Audio}
-        {block:Answer}Answer{/block:Answer}
-      </a>
-    </h1>
-    {block:Date}<time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" class="article_time">{Month} {DayOfMonth}, {Year}</time>{/block:Date}
-    <section class="post_content">
-      {block:Text}{Body}{/block:Text}
-      {block:Photo}
-        <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/></a>
-        {block:Caption}
-        <p>{Caption}</p>
-        {/block:Caption}
-      {/block:Photo}
-      {block:Panorama}
-        {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
-        {block:Caption}
-        <p>{Caption}</p>
-        {/block:Caption}
-      {/block:Panorama}
-      {block:Photoset}
-        {block:Photos}
-          <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/></a>
-          {block:Caption}
-          <p>{Caption}</p>
-          {/block:Caption}
-        {/block:Photos}
-        {block:Caption}
-        <p>{Caption}</p>
-        {/block:Caption}
-      {/block:Photoset}
-      {block:Quote}
-        <blockquote>"{Quote}"</blockquote>
-        {block:Source}
-        <h2>{Source}</h2>
-        {/block:Source}
-      {/block:Quote}
-      {block:Link}
-        {block:Description}
-        {Description}
-        {/block:Description}
-      {/block:Link}
-      {block:Chat}
-        <ul class="chat">
-            {block:Lines}<li class="{Alt}">{block:Label} {Label} {/block:Label}{Line}</li>{/block:Lines}
-        </ul>
-      {/block:Chat}
-      {block:Video}
-        {Video-500}
-        {block:Caption}
-        <p>{Caption}</p>
-        {/block:Caption}
-      {/block:Video}
-      {block:Audio}
-        {AudioPlayerBlack}
-        {block:Caption}
-        <p>{Caption}</p>
-        {/block:Caption}
-      {/block:Audio}
-      {block:Answer}
-        <p>{Asker} wrote: {Question}</p>
-        <p>{block:Answerer}{Answerer} said: {/block:Answerer}{Answer}</p>
-      {/block:Answer}
-
-
-      <figure class="kudo able clearfix" id="kudo_eid{PostID}">
-        <a href="#kudo">
-          <div class="filling">&nbsp;</div>
-        </a>
-        <div class="num">{NoteCount}</div>
-        <div class="txt">Kudos</div>
-      </figure>
-      <figure class="side kudo able clearfix" id="kudo_side_eid{PostID}">
-        <a href="#kudo">
-          <div class="filling">&nbsp;</div>
-        </a>
-        <div class="num">{NoteCount}</div>
-        <div class="txt">Kudos</div>
-      </figure>
-    </section>
-  </article>
-
-  <div>&nbsp;</div>
-  {/block:Posts}{/block:PermalinkPage}
   {block:IndexPage}
   <section id="top_article">
     <aside id="read_this_first">
@@ -374,6 +278,126 @@
   </nav>
   {/block:Pagination}
   {/block:IndexPage}
+
+  {block:PermalinkPage}{block:Posts}
+  <article id="eid{PostID}" class="post {block:Link}linked {/block:Link}oldx">
+    <h1 class="article_title">
+      {block:Link}<a href="{URL}">{Name}</a>{/block:Link}
+      <a href="{Permalink}"{block:Link} class="anchor"{/block:Link}>
+        {block:Text}{Title}{/block:Text}
+        {block:Photo}Photo{/block:Photo}
+        {block:Panorama}Panorama{/block:Panorama}
+        {block:Photoset}Photos{/block:Photoset}
+        {block:Quote}Quote{/block:Quote}
+        {block:Link}&nbsp;{/block:Link}
+        {block:Chat}Conversation{/block:Chat}
+        {block:Video}Video{/block:Video}
+        {block:Audio}Audio{/block:Audio}
+        {block:Answer}Answer{/block:Answer}
+      </a>
+    </h1>
+    {block:Date}<time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" class="article_time">{Month} {DayOfMonth}, {Year}</time>{/block:Date}
+    <section class="post_content">
+      {block:Text}{Body}{/block:Text}
+      {block:Photo}
+        <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/></a>
+        {block:Caption}
+        <p>{Caption}</p>
+        {/block:Caption}
+      {/block:Photo}
+      {block:Panorama}
+        {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+        {block:Caption}
+        <p>{Caption}</p>
+        {/block:Caption}
+      {/block:Panorama}
+      {block:Photoset}
+        {block:Photos}
+          <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/></a>
+          {block:Caption}
+          <p>{Caption}</p>
+          {/block:Caption}
+        {/block:Photos}
+        {block:Caption}
+        <p>{Caption}</p>
+        {/block:Caption}
+      {/block:Photoset}
+      {block:Quote}
+        <blockquote>"{Quote}"</blockquote>
+        {block:Source}
+        <h2>{Source}</h2>
+        {/block:Source}
+      {/block:Quote}
+      {block:Link}
+        {block:Description}
+        {Description}
+        {/block:Description}
+      {/block:Link}
+      {block:Chat}
+        <ul class="chat">
+            {block:Lines}<li class="{Alt}">{block:Label} {Label} {/block:Label}{Line}</li>{/block:Lines}
+        </ul>
+      {/block:Chat}
+      {block:Video}
+        {Video-500}
+        {block:Caption}
+        <p>{Caption}</p>
+        {/block:Caption}
+      {/block:Video}
+      {block:Audio}
+        {AudioPlayerBlack}
+        {block:Caption}
+        <p>{Caption}</p>
+        {/block:Caption}
+      {/block:Audio}
+      {block:Answer}
+        <p>{Asker} wrote: {Question}</p>
+        <p>{block:Answerer}{Answerer} said: {/block:Answerer}{Answer}</p>
+      {/block:Answer}
+
+      <figure class="kudo able clearfix" id="kudo_eid{PostID}">
+        <a href="#kudo">
+          <div class="filling">&nbsp;</div>
+        </a>
+        <div class="num">{NoteCount}</div>
+        <div class="txt">Kudos</div>
+      </figure>
+      <figure class="side kudo able clearfix" id="kudo_side_eid{PostID}">
+        <a href="#kudo">
+          <div class="filling">&nbsp;</div>
+        </a>
+        <div class="num">{NoteCount}</div>
+        <div class="txt">Kudos</div>
+      </figure>
+
+    </section>
+    <section id="disqus_thread">
+    </section>
+    {block:IfDisqusShortname}
+    <script type="text/javascript">
+        /* * * DISQUS CONFIGURATION * * */
+        var disqus_shortname = '{text:Disqus Shortname}';
+        var disqus_url = '{Permalink}';
+        var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    {/block:IfDisqusShortname}
+    <p><a href="#notes" onclick="$('section#notes').fadeToggle('fast');$(this).find('span').text($(this).find('span').text()=='Show'?'Hide':'Show');"><strong><span>Show</span> Notes</strong></a></p>
+    <section id="notes" style="display:none">
+    {block:PostNotes}{PostNotes}{/block:PostNotes}
+    </section>
+  </article>
+
+  <div>&nbsp;</div>
+  {/block:Posts}{/block:PermalinkPage}
 </section>
 
 <footer id="masthead"{block:IndexPage} class="userhome"{/block:IndexPage}>
@@ -462,6 +486,28 @@
   article p iframe, article p object {
     min-width: 0 !important;
     margin-left: 0 !important;
+  }
+
+  section#disqus_thread, section#notes {
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  section#notes ol.notes {
+    clear: both;
+    padding-left: 18px !important;
+    list-style: none;
+    border-left: 10px solid {color:Theme Color};
+  }
+  section#notes li.note img.avatar {
+    display: inline-block;
+    width: auto !important;
+  }
+  section#notes li.note span.action a {
+    font-weight: 700;
+  }
+  section#notes li.note blockquote {
+    border-left: none;
   }
 </style>
 <script>
