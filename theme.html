@@ -299,7 +299,7 @@
       </h1>
       {block:Date}<time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" class="article_time">{Month} {DayOfMonth}, {Year}</time>{/block:Date}
       <section class="post_content">
-        <a href="{Permalink}" class="content">
+        <div class="permalink" data-permalink="{Permalink}">
           {block:Text}
             {Body}
           {/block:Text}
@@ -358,7 +358,7 @@
             <p>{Asker} wrote: {Question}</p>
             <p>{block:Answerer}{Answerer} said: {/block:Answerer}{Answer}</p>
           {/block:Answer}
-        </a>
+        </div>
         <p class="continue_mark"><a href="{Permalink}" class="continue_button">Continue &rarr;</a></p>
       </section>
     </article>
@@ -467,15 +467,25 @@
 <script>
 $(function() {
   $('#tumblr_controls').css('z-index', '');
+  {block:IndexPage}
+  $('section#more_articles section.post_content>div.permalink a').contents().unwrap();
+  $('section#more_articles section.post_content>div.permalink').each(function () {
+    $(this).replaceWith('<a href="'+$(this).attr('data-permalink')+'" class="content">'+$(this).html()+"</a>");
+  });
+  $('article.post section.post_content').each(function () {
+    if ($(this).text().length>550 && $(this).html().length>575) $(this).html($(this).html().substring(0,575)+"...");
+  });
+  {/block:IndexPage}
+  {block:Permalink}
+  $('figure.kudo div.num').text(parseInt($('figure.kudo div.num').first().text().replace(/,/g, "")).toLocaleString());
+  {/block:Permalink}
   {block:PermalinkPagination}
   $.ajax({
     url: '/random',
     dataType: 'html',
     success: function(html) {
-      var title = html.match("<title>(.*?)</title>")[1];
-      var url = html.match('<meta property="og:url" content="(.*?)" />')[1];
-      $('footer#masthead #readnext a').attr('href', url);
-      $('footer#masthead #readnext a .flank_title').text(title);
+      $('footer#masthead #readnext a').attr('href', $(html).filter('meta[property="og:url"]').attr('content'));
+      $('footer#masthead #readnext a .flank_title').text($(html).filter('title').text());
     }
   });
   {/block:PermalinkPagination}
