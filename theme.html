@@ -59,7 +59,7 @@
   <h2 id="logotype"><a href="https://svbtle.com">Svbtle</a></h2>
   <a id="master_indicator" href="#show-drop">&nbsp;</a>
   <ul id="master_drop">
-    <li><h5><a href="https://svbtle.com">{Title}<br/>is writing on the<br/><span>Svbtle</span> network.</a></h5></li>
+    <li><h5><a href="https://svbtle.com">{Title}<br/>is writing on the<br/><span>Tumblr</span> network.</a></h5></li>
     {block:IfTwitterUsername}<li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}" class="twitter_head">@{text:Twitter Username}&nbsp;on&nbsp;twitter</a></li>{/block:IfTwitterUsername}
     {block:IfAppdotnetUsername}<li class="link adn icons"><a href="https://alpha.app.net/{text:Twitter Username}" class="adn_head" rel="me">@{text:Twitter Username}&nbsp;on&nbsp;app.net</a></li>{/block:IfAppdotnetUsername}
     {block:HasPages}
@@ -70,23 +70,65 @@
     {block:AskEnabled}<li class="link email"><a href="/ask">say&nbsp;hello</a></li>{/block:AskEnabled}
     {block:IfRssFeed}<li class="link feed"><a href="{RSS}">rss</a></li>{/block:IfRssFeed}
     {block:IfArchiveLink}<li class="link archive"><a href="/archive">archive</a></li>{/block:IfArchiveLink}
-    <li><a href="https://svbtle.com" class="header_link">SVBTLE</a></li>
-    <li><a href="https://svbtle.com/magazine">magazine</a></li>
-    <li><a href="https://svbtle.com/about">about svbtle</a></li>
-    <li><a href="http://twitter.com/svbtle" target="_blank">@svbtle</a></li>
-    <li style="display: none;"><a href="https://svbtle.com/feed" target="_blank">rss feed</a></li>
-    <li><br/></li>
-    <li><a href="https://svbtle.com/login">log in</a></li>
+    <li><a href="https://github.com/EricTendian/svbtle-tumblr" class="header_link">SVBTLE-TUMBLR</a></li>
+    <li><a href="http://tendian.io/" target="_blank">by @EricTendian</a></li>
   </ul>
 </nav>
 <div id="touch_close">&nbsp;</div>
 
-<h1 id="home_logotype"><a href="https://svbtle.com">Svbtle</a></h1>
+<h1 id="home_logotype"><a href="http://www.tumblr.com/">Tumblr</a></h1>
 <section id="river" class="{block:IndexPage}userhome{/block:IndexPage}{block:PreviousPage} paginated{/block:PreviousPage}">
   <header id="page_header">
     {block:IndexPage}<ul id="user_nav">
       {block:IfTwitterUsername}<li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}" class="twitter_head">@{text:Twitter Username}&nbsp;on&nbsp;twitter</a></li>{/block:IfTwitterUsername}
       {block:IfAppdotnetUsername}<li class="link adn icons"><a href="https://alpha.app.net/{text:Twitter Username}" class="adn_head" rel="me">@{text:Twitter Username}&nbsp;on&nbsp;app.net</a></li>{/block:IfAppdotnetUsername}
+      {block:IfSwiftypeSearchKey}<li id="search">
+        <form>
+          <input type="text" id="st-search-input" class="st-search-input" />
+        </form>
+        <div id="st-results-container"></div>
+        <script type="text/javascript">
+          var Swiftype = window.Swiftype || {};
+          (function() {
+            Swiftype.key = '{text:Swiftype Search Key}';
+            Swiftype.inputElement = '#st-search-input';
+            Swiftype.resultContainingElement = '#st-results-container';
+            Swiftype.attachElement = '#st-search-input';
+            Swiftype.renderStyle = "overlay";
+
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = "//swiftype.com/embed.js";
+            var entry = document.getElementsByTagName('script')[0];
+            entry.parentNode.insertBefore(script, entry);
+          }());
+        </script>
+        <style type="text/css">
+        form {
+          display: inline-block;
+        }
+        input#st-search-input {
+          font-size: 15px;
+          width: 150px;
+          background-color: white;
+          border: 2px solid #eee;
+          font-family: 'proxima-nova','Helvetica','Avenir',sans-serif;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+        }
+        div.swiftype {
+          font-family: 'proxima-nova','Helvetica','Avenir',sans-serif;
+        }
+        div.swiftype div.st-result-listing div.st-search-summary h2, div.swiftype div.st-result-listing .st-results div.st-result .st-result-text h3 a {
+          font-size: 14px;
+        }
+        div.swiftype div.st-result-listing .st-results div.st-result .st-result-text .st-metadata .st-snippet {
+          font-size: 13px;
+        }
+        </style>
+      </li>{/block:IfSwiftypeSearchKey}
     </ul>{/block:IndexPage}
     <figure class="logo main">
       <a href="/">{Title}</a>
@@ -171,8 +213,11 @@
           {/block:Caption}
         {/block:Audio}
         {block:Answer}
-          <p>{Asker} wrote: {Question}</p>
-          <p>{block:Answerer}{Answerer} said: {/block:Answerer}{Answer}</p>
+          <p>{Asker} wrote:</p>
+          <blockquote>{Question}</blockquote>
+          {block:Answerer}<p>{Answerer} said:</p>{/block:Answerer}
+          <p{block:Answerer} style="display:none"{/block:Answerer}>{Title} replied:</p>
+          <blockquote>{Answer}</blockquote>
         {/block:Answer}
       </section>
       <p><a href="{Permalink}" class="buttonize">Continue reading</a></p>
@@ -259,8 +304,11 @@
             {/block:Caption}
           {/block:Audio}
           {block:Answer}
-            <p>{Asker} wrote: {Question}</p>
-            <p>{block:Answerer}{Answerer} said: {/block:Answerer}{Answer}</p>
+            <p>{Asker} wrote:</p>
+            <blockquote>{Question}</blockquote>
+            {block:Answerer}<p>{Answerer} said:</p>{/block:Answerer}
+            <p{block:Answerer} style="display:none"{/block:Answerer}>{Title} replied:</p>
+            <blockquote>{Answer}</blockquote>
           {/block:Answer}
         </div>
         <p class="continue_mark"><a href="{Permalink}" class="continue_button">Continue &rarr;</a></p>
@@ -351,8 +399,11 @@
         {/block:Caption}
       {/block:Audio}
       {block:Answer}
-        <p>{Asker} wrote: {Question}</p>
-        <p>{block:Answerer}{Answerer} said: {/block:Answerer}{Answer}</p>
+        <p>{Asker} wrote:</p>
+        <blockquote>{Question}</blockquote>
+        {block:Answerer}<p>{Answerer} said:</p>{/block:Answerer}
+        <p{block:Answerer} style="display:none"{/block:Answerer}>{Title} replied:</p>
+        <blockquote>{Answer}</blockquote>
       {/block:Answer}
 
       <figure class="kudo able clearfix" id="kudo_eid{PostID}">
@@ -390,10 +441,10 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     {/block:IfDisqusShortname}
-    <p><a href="#notes" onclick="$('section#notes').fadeToggle('fast');$(this).find('span').text($(this).find('span').text()=='Show'?'Hide':'Show');"><strong><span>Show</span> Notes</strong></a></p>
+    {block:PostNotes}<p><a href="#notes" onclick="$('section#notes').fadeToggle('fast');$(this).find('span').text($(this).find('span').text()=='Show'?'Hide':'Show');"><strong><span>Show</span> Notes</strong></a></p>
     <section id="notes" style="display:none">
-    {block:PostNotes}{PostNotes}{/block:PostNotes}
-    </section>
+    {PostNotes}
+    </section>{/block:PostNotes}
   </article>
 
   <div>&nbsp;</div>
@@ -518,7 +569,7 @@ $(function() {
   $('section#more_articles section.post_content>div.permalink').each(function () {
     $(this).replaceWith('<a href="'+$(this).attr('data-permalink')+'" class="content">'+$(this).html()+"</a>");
   });
-  $('article.post section.post_content').each(function () {
+  $('article.post section.post_content a.content').each(function () {
     if ($(this).text().length>550 && $(this).html().length>575) $(this).html($(this).html().substring(0,575)+"...");
   });
   {/block:IndexPage}
