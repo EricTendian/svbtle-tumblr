@@ -34,6 +34,7 @@ How to Install
 Kudos
 -----
 To enable kudos, follow these steps:
+
 1. Sign up for a Firebase account at [firebase.com](https://www.firebase.com/).
 2. Create a new firebase (perferrably named the same as your blog). Be sure to follow Firebase naming conventions.
 3. Enter the Firebase name into the "Firebase Name" field on the theme customization page. Click save, and enjoy the post kudos feature!
