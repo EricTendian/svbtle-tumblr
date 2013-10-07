@@ -13,6 +13,7 @@
   <meta name="text:App dot net Username" content="" />
   <meta name="text:Google Analytics ID" content="" />
   <meta name='text:Disqus Shortname' content="" />
+  <meta name='text:Firebase Name' content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {block:Description}
   <meta name="description" content="{MetaDescription}" />
@@ -39,18 +40,17 @@
   <link rel="stylesheet" href="http://static.tumblr.com/rb82j8l/uJUmty4eh/fonts.css" media="all">
   <link href="http://static.tumblr.com/rb82j8l/zrOmtyjo3/style.min.css" media="all" rel="stylesheet" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="http://static.tumblr.com/rb82j8l/SxMmtyjov/theme.min.js"></script>
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '{text:Google Analytics ID}']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+  <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+  <meta name="firebase-name" content="{text:Firebase Name}" />
+  {block:IfGoogleAnalyticsID}<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '{text:Google Analytics ID}');
+    ga('send', 'pageview');
+  </script>{/block:IfGoogleAnalyticsID}
+  <script src="http://static.tumblr.com/rb82j8l/3C1muapoi/theme.js"></script>
 </head>
 <body class="blog">
 <div id="touch_menu">&nbsp;</div>
@@ -61,7 +61,7 @@
   <ul id="master_drop">
     <li><h5><a href="https://svbtle.com">{Title}<br/>is writing on the<br/><span>Tumblr</span> network.</a></h5></li>
     {block:IfTwitterUsername}<li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}" class="twitter_head">@{text:Twitter Username}&nbsp;on&nbsp;twitter</a></li>{/block:IfTwitterUsername}
-    {block:IfAppdotnetUsername}<li class="link adn icons"><a href="https://alpha.app.net/{text:Twitter Username}" class="adn_head" rel="me">@{text:Twitter Username}&nbsp;on&nbsp;app.net</a></li>{/block:IfAppdotnetUsername}
+    {block:IfAppdotnetUsername}<li class="link adn icons"><a href="https://alpha.app.net/{text:App dot net Username}" class="adn_head" rel="me">@{text:App dot net Username}&nbsp;on&nbsp;app.net</a></li>{/block:IfAppdotnetUsername}
     {block:HasPages}
       {block:Pages}
     <li class="link"><a href="{URL}">{Label}</a></li>
@@ -80,8 +80,8 @@
 <section id="river" class="{block:IndexPage}userhome{/block:IndexPage}{block:PreviousPage} paginated{/block:PreviousPage}">
   <header id="page_header">
     {block:IndexPage}<ul id="user_nav">
-      {block:IfTwitterUsername}<li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}" class="twitter_head">@{text:Twitter Username}&nbsp;on&nbsp;twitter</a></li>{/block:IfTwitterUsername}
-      {block:IfAppdotnetUsername}<li class="link adn icons"><a href="https://alpha.app.net/{text:Twitter Username}" class="adn_head" rel="me">@{text:Twitter Username}&nbsp;on&nbsp;app.net</a></li>{/block:IfAppdotnetUsername}
+      {block:IfTwitterUsername}<li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}" class="twitter_head">@{text:Twitter Username}</a></li>{/block:IfTwitterUsername}
+      {block:IfAppdotnetUsername}<li class="link adn icons"><a href="https://alpha.app.net/{text:App dot net Username}" class="adn_head" rel="me">@{text:App dot net Username}</a></li>{/block:IfAppdotnetUsername}
       {block:IfSwiftypeSearchKey}<li id="search">
         <form>
           <input type="text" id="st-search-input" class="st-search-input" />
@@ -410,14 +410,14 @@
         <a href="#kudo">
           <div class="filling">&nbsp;</div>
         </a>
-        <div class="num">{NoteCount}</div>
+        <div class="num">0</div>
         <div class="txt">Kudos</div>
       </figure>
       <figure class="side kudo able clearfix" id="kudo_side_eid{PostID}">
         <a href="#kudo">
           <div class="filling">&nbsp;</div>
         </a>
-        <div class="num">{NoteCount}</div>
+        <div class="num">0</div>
         <div class="txt">Kudos</div>
       </figure>
 
@@ -466,15 +466,15 @@
     <a href="/" id="bottom_tagline">
       <span>{Title}</span> {Description}
     </a>
-    {block:IfTwitterUsername}<a href="http://twitter.com/{text:Twitter Username}" class="linkout twitter">@{text:Twitter Username}&nbsp;on&nbsp;twitter</a>{/block:IfTwitterUsername}
-    {block:IfAppdotnetUsername}<a href="https://alpha.app.net/{text:Twitter Username}" class="linkout appdotnet" rel="me">@{text:Twitter Username}&nbsp;on&nbsp;app.net</a>{/block:IfAppdotnetUsername}
+    {block:IfTwitterUsername}<a href="http://twitter.com/{text:Twitter Username}" class="linkout twitter">@{text:Twitter Username}</a>{/block:IfTwitterUsername}
+    {block:IfAppdotnetUsername}<a href="https://alpha.app.net/{text:App dot net Username}" class="linkout appdotnet" rel="me">@{text:App dot net Username}</a>{/block:IfAppdotnetUsername}
     {block:AskEnabled}<a href="/ask" class="linkout contact">say&nbsp;hello</a>{/block:AskEnabled}
   </div>
   <div id="foot_more">
     <a href="/"><span>Full blog &raquo;</span></a>
   </div>
   <div id="copyright">
-    &copy; 2013
+    &copy; {CopyrightYears}
   </div>
 </footer>
 
@@ -565,12 +565,14 @@
 $(function() {
   $('#tumblr_controls').css('z-index', '');
   {block:IndexPage}
+  $('section#top_article section.post_content').each(function () {
+    if ($(this).text().length>550 && $(this).html().length>575) $(this).html($(this).html().substring(0,575)+"...");
+  });
   $('section#more_articles section.post_content>div.permalink a').contents().unwrap();
   $('section#more_articles section.post_content>div.permalink').each(function () {
-    $(this).replaceWith('<a href="'+$(this).attr('data-permalink')+'" class="content">'+$(this).html()+"</a>");
-  });
-  $('article.post section.post_content a.content').each(function () {
-    if ($(this).text().length>550 && $(this).html().length>575) $(this).html($(this).html().substring(0,575)+"...");
+    if ($(this).text().length>550 && $(this).html().length>575)
+      $(this).replaceWith('<a href="'+$(this).attr('data-permalink')+'" class="content">'+$(this).html().substring(0,575)+"...</a>");
+    else $(this).replaceWith('<a href="'+$(this).attr('data-permalink')+'" class="content">'+$(this).html()+"</a>");
   });
   {/block:IndexPage}
   {block:Permalink}
